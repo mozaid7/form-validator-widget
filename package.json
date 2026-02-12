@@ -1,6 +1,6 @@
 {
   "name": "form-validator-widget",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A reusable form validation widget with animations and advanced JavaScript concepts",
   "type": "module",
   "main": "dist/index.js",
