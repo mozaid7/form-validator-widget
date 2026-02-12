@@ -1,6 +1,6 @@
 {
   "name": "form-validator-widget",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A reusable form validation widget with animations and advanced JavaScript concepts",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
