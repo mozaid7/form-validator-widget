@@ -1,5 +1,6 @@
 export { FormValidator } from './components/FormValidator';
 export { FormField } from './components/FormField';
+export { CheckboxGroup } from './components/CheckboxGroup';
 
 export { useDebounce } from './hooks/useDebounce';
 
