@@ -17,6 +17,16 @@ export const  FormValidator: React.FC<FormValidatorProps> = ({
     const [errors, setErrors] = useState<ErrorState>({});
     const [touched, setTouched] = useState<Record<string, boolean>>({});
 
+    const getVisibleErrors = useCallback(() => {
+        const visibleErrors: ErrorState = {};
+        Object.keys(errors).forEach(fieldName => {
+        if (touched[fieldName] && errors[fieldName]) {
+            visibleErrors[fieldName] = errors[fieldName];
+        }
+        });
+        return visibleErrors;
+    }, [errors, touched]);
+
     const debouncedValidate = useDebounce((name: string, value: any) => {
         const error = validateField(value, validationRules[name]);
         setErrors(prev => ({...prev, [name]: error || ''}));
@@ -50,6 +60,12 @@ export const  FormValidator: React.FC<FormValidatorProps> = ({
 
         const formErrors = validateForm(formValues, validationRules);
         setErrors(formErrors);
+        
+        const allTouched: Record<string, boolean> = {};
+        Object.keys(validationRules).forEach(fieldName => {
+            allTouched[fieldName] = true;
+        });
+        setTouched(allTouched);
 
         if(Object.keys(formErrors).length === 0){
             onSubmit(formValues);
@@ -76,12 +92,11 @@ export const  FormValidator: React.FC<FormValidatorProps> = ({
         return child;
     });
 
-    const errorElements = Object.keys(errors).map(fieldName => (
-        errors[fieldName] && (
-            <div key={fieldName} className="form-validator-error-message" data-field={fieldName}>
-                {errors[fieldName]}
-            </div>
-        )
+    const visibleErrors = getVisibleErrors();
+    const errorElements = Object.keys(visibleErrors).map(fieldName => (
+        <div key={fieldName} className="form-validator-error-message" data-field={fieldName}>
+            {visibleErrors[fieldName]}
+        </div>
     ));
 
     return (
@@ -93,7 +108,7 @@ export const  FormValidator: React.FC<FormValidatorProps> = ({
         >
             {childrenWithProps}
             {errorElements}
-            <button type="submit">Submit</button>
+            <button type="submit" style={{ display: 'none' }}>Submit</button>
         </form>
     );
 }
