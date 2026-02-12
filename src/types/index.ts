@@ -1,18 +1,63 @@
-// Define what a validation rule looks like
+
 export interface ValidationRule {
+  
   required?: boolean;
-  email?: boolean;
+  
   minLength?: number;
   maxLength?: number;
   pattern?: RegExp;
-  custom?: (value: any) => string | undefined;
-
+  
+  email?: boolean;
+  
+  complexity?: boolean;  
+  
+  number?: boolean;
+  min?: number;
+  max?: number;
+  
+  url?: boolean;
+  
+  tel?: boolean;
+  
+  date?: boolean;
+  minDate?: string;
+  maxDate?: string;
+  
+  checkboxGroup?: boolean;
+  minSelected?: number;
+  maxSelected?: number;
+  
+  radioGroup?: boolean;
+  
+  select?: boolean;
+  
+  custom?: (value: any, allValues?: Record<string, any>) => string | undefined;
+  
   messages?: {
     required?: string;
-    email?: string;
+    
     minLength?: string;
     maxLength?: string;
     pattern?: string;
+    
+    email?: string;
+    
+    complexity?: string;
+    
+    number?: string;
+    min?: string;
+    max?: string;
+    
+    url?: string;
+    
+    tel?: string;
+    
+    date?: string;
+    minDate?: string;
+    maxDate?: string;
+    
+    minSelected?: string;
+    maxSelected?: string;
   };
 }
 
@@ -25,21 +70,19 @@ export interface FormValidatorProps {
   
   theme?: 'light' | 'dark' | Record<string, string>;
   
-  customStyles?: {
-        form?: React.CSSProperties;
-        [key: string]: React.CSSProperties | undefined;
-    };
+  customStyles?: Record<string, React.CSSProperties>;
   
   enableDebounce?: boolean;
   debounceDelay?: number;
 }
 
 export interface FormState {
-  [key: string]: any;
+  [key: string]: any;  
 }
 
+// Error state
 export interface ErrorState {
-  [key: string]: string; 
+  [key: string]: string;  
 }
 
 export interface FormContextValue {
