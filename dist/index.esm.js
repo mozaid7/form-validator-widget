@@ -180,6 +180,15 @@ var FormValidator = function (_a) {
     var _f = useState({}), formValues = _f[0], setFormValues = _f[1];
     var _g = useState({}), errors = _g[0], setErrors = _g[1];
     var _h = useState({}), touched = _h[0], setTouched = _h[1];
+    var getVisibleErrors = useCallback(function () {
+        var visibleErrors = {};
+        Object.keys(errors).forEach(function (fieldName) {
+            if (touched[fieldName] && errors[fieldName]) {
+                visibleErrors[fieldName] = errors[fieldName];
+            }
+        });
+        return visibleErrors;
+    }, [errors, touched]);
     var debouncedValidate = useDebounce(function (name, value) {
         var error = validateField(value, validationRules[name]);
         setErrors(function (prev) {
@@ -220,6 +229,11 @@ var FormValidator = function (_a) {
         e.preventDefault();
         var formErrors = validateForm(formValues, validationRules);
         setErrors(formErrors);
+        var allTouched = {};
+        Object.keys(validationRules).forEach(function (fieldName) {
+            allTouched[fieldName] = true;
+        });
+        setTouched(allTouched);
         if (Object.keys(formErrors).length === 0) {
             onSubmit(formValues);
         }
@@ -242,11 +256,12 @@ var FormValidator = function (_a) {
         }
         return child;
     });
-    var errorElements = Object.keys(errors).map(function (fieldName) { return (errors[fieldName] && (React.createElement("div", { key: fieldName, className: "form-validator-error-message", "data-field": fieldName }, errors[fieldName]))); });
+    var visibleErrors = getVisibleErrors();
+    var errorElements = Object.keys(visibleErrors).map(function (fieldName) { return (React.createElement("div", { key: fieldName, className: "form-validator-error-message", "data-field": fieldName }, visibleErrors[fieldName])); });
     return (React.createElement("form", { onSubmit: handleSubmit, className: "form-validator-theme-".concat(theme), style: customStyles.form, noValidate: true },
         childrenWithProps,
         errorElements,
-        React.createElement("button", { type: "submit" }, "Submit")));
+        React.createElement("button", { type: "submit", style: { display: 'none' } }, "Submit")));
 };
 
 var FormField = function (_a) {
