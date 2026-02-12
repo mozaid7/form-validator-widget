@@ -2,6 +2,7 @@ import typescript from '@rollup/plugin-typescript';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
+import copy from 'rollup-plugin-copy'; 
 import { readFileSync } from 'fs';
 
 const pkg = JSON.parse(
@@ -43,6 +44,15 @@ export default {
             sourceMap: true,
             minimize: true,      
             extensions: ['.css'] 
+        }),
+
+        copy({
+            targets: [
+            { 
+            src: 'src/styles/**/*.css', 
+            dest: 'dist/styles' 
+            }
+            ]
         }),
 
         typescript({
