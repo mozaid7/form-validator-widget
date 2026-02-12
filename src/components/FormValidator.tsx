@@ -2,7 +2,7 @@ import React, {useState, useCallback} from "react";
 import { FormValidatorProps, FormState, ErrorState } from "../types";
 import { validateField, validateForm } from "../utils/validators";
 import { useDebounce } from "../hooks/useDebounce";
-import '../styles/animations.css';
+import '../styles/animations.module.css';
 
 export const  FormValidator: React.FC<FormValidatorProps> = ({
     children,
