@@ -25,7 +25,10 @@ export interface FormValidatorProps {
   
   theme?: 'light' | 'dark' | Record<string, string>;
   
-  customStyles?: Record<string, React.CSSProperties>;
+  customStyles?: {
+        form?: React.CSSProperties;
+        [key: string]: React.CSSProperties | undefined;
+    };
   
   enableDebounce?: boolean;
   debounceDelay?: number;
