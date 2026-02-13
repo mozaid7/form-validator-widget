@@ -28,19 +28,23 @@ export default {
     ],
 
     external: [
-    ...Object.keys(pkg.peerDependencies || {}),
-    'tslib'  
+        ...Object.keys(pkg.peerDependencies || {}),
+        ...Object.keys(pkg.dependencies || {}), 
+        'tslib',
+        'react',
+        'react-dom'
     ],
+    
     plugins: [
         resolve({
-        extensions: ['.ts', '.tsx', '.js', '.jsx', '.css']
+            extensions: ['.ts', '.tsx', '.js', '.jsx', '.css']
         }),
         commonjs(),
 
         postcss({
             inject: true,        
             extract: false,      
-            modules: false,      
+            modules: true,      
             sourceMap: true,
             minimize: true,      
             extensions: ['.css'] 
@@ -48,16 +52,16 @@ export default {
 
         copy({
             targets: [
-            { 
-            src: 'src/styles/**/*.css', 
-            dest: 'dist/styles' 
-            }
+                { 
+                    src: 'src/styles/**/*.css', 
+                    dest: 'dist/styles' 
+                }
             ]
         }),
 
         typescript({
-        tsconfig: './tsconfig.json',
-        tslib: await import('tslib')
+            tsconfig: './tsconfig.json',
+            tslib: await import('tslib')
         })
     ]
 };
