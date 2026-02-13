@@ -109,7 +109,8 @@ export const FormValidator: React.FC<FormValidatorProps> = ({
 
             if (childName) {
                 // Check if this is a CheckboxGroup by looking at the component type
-                const isCheckboxGroup = element.props && element.props.options !== undefined;
+                const isCheckboxGroup = element.type === 'CheckboxGroup' || 
+                    (typeof element.type === 'function' && element.type.name === 'CheckboxGroup');
 
                 if (isCheckboxGroup) {
                     // For CheckboxGroup, pass group handlers
@@ -119,7 +120,7 @@ export const FormValidator: React.FC<FormValidatorProps> = ({
                         onBlur: handleGroupBlur,
                         error: errors[childName],
                         touched: touched[childName],
-                        'data-touched': touched[childName] || false,
+                        'data-touched': touched[childName],
                         'data-error': !!errors[childName]
                     });
                 } else {
