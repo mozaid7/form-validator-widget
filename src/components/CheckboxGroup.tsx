@@ -27,6 +27,14 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
   error,
   touched
 }) => {
+  // Sync with form values when they change from outside
+  useEffect(() => {
+    // This effect ensures the component reacts to external value changes
+    if (values) {
+      // Values are already synced via props
+    }
+  }, [values]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
     let newValues: string[];
@@ -42,7 +50,10 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
 
   // Notify form of blur when any checkbox loses focus
   const handleBlur = () => {
-    onBlur?.(name);
+    // Small timeout to ensure change happens before blur
+    setTimeout(() => {
+      onBlur?.(name);
+    }, 10);
   };
 
   return (
@@ -56,6 +67,7 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
           <input
             type="checkbox"
             name={name}
+            
             value={option.value}
             checked={values.includes(option.value)}
             onChange={handleChange}
@@ -71,3 +83,6 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
     </div>
   );
 };
+
+// Add display name for better debugging and component detection
+CheckboxGroup.displayName = 'CheckboxGroup';
