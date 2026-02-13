@@ -1,185 +1,162 @@
-import React, { useState, useCallback, ReactElement } from "react";
+import React, { useState, useCallback } from "react";
 import { FormValidatorProps, FormState, ErrorState } from "../types";
 import { validateField, validateForm } from "../utils/validators";
 import { useDebounce } from "../hooks/useDebounce";
-import styles from '../styles/animations.module.css';
+import { CheckboxGroup } from "./CheckboxGroup";
+import styles from "../styles/animations.module.css";
 
 export const FormValidator: React.FC<FormValidatorProps> = ({
-    children,
-    validationRules,
-    onSubmit,
-    theme = 'light',
-    customStyles = {},
-    enableDebounce = true,
-    debounceDelay = 300
+  children,
+  validationRules,
+  onSubmit,
+  theme = "light",
+  customStyles = {},
+  enableDebounce = true,
+  debounceDelay = 300,
 }) => {
-    const [formValues, setFormValues] = useState<FormState>({});
-    const [errors, setErrors] = useState<ErrorState>({});
-    const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [formValues, setFormValues] = useState<FormState>({});
+  const [errors, setErrors] = useState<ErrorState>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
-    // Get visible errors (only for touched fields)
-    const getVisibleErrors = useCallback(() => {
-        const visibleErrors: ErrorState = {};
-        Object.keys(errors).forEach(fieldName => {
-            if (touched[fieldName] && errors[fieldName]) {
-                visibleErrors[fieldName] = errors[fieldName];
-            }
-        });
-        return visibleErrors;
-    }, [errors, touched]);
-
-    const debouncedValidate = useDebounce((name: string, value: any) => {
-        const error = validateField(value, validationRules[name]);
-        setErrors(prev => ({ ...prev, [name]: error || '' }));
-    }, debounceDelay);
-
-    const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value, type, checked } = e.target;
-        
-        let fieldValue = value;
-        if (type === 'checkbox') {
-            fieldValue = checked ? value : '';
-        } else if (type === 'radio') {
-            fieldValue = value;
-        }
-        
-        setFormValues(prev => ({ ...prev, [name]: fieldValue }));
-
-        if (enableDebounce) {
-            debouncedValidate(name, fieldValue);
-        } else {
-            const error = validateField(fieldValue, validationRules[name]);
-            setErrors(prev => ({ ...prev, [name]: error || '' }));
-        }
-    }, [enableDebounce, debouncedValidate, validationRules]);
-
-    const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
-        const { name, value, type, checked } = e.target;
-        
-        let fieldValue = value;
-        if (type === 'checkbox') {
-            fieldValue = checked ? value : '';
-        } else if (type === 'radio') {
-            fieldValue = value;
-        }
-        
-        setTouched(prev => ({ ...prev, [name]: true }));
-
-        const error = validateField(fieldValue, validationRules[name]);
-        setErrors(prev => ({ ...prev, [name]: error || '' }));
-    }, [validationRules]);
-
-    // Special handler for CheckboxGroup
-    const handleGroupChange = useCallback((name: string, values: string[]) => {
-        setFormValues(prev => ({ ...prev, [name]: values }));
-        
-        const error = validateField(values, validationRules[name]);
-        setErrors(prev => ({ ...prev, [name]: error || '' }));
-    }, [validationRules]);
-
-    const handleGroupBlur = useCallback((name: string) => {
-        setTouched(prev => ({ ...prev, [name]: true }));
-        
-        const error = validateField(formValues[name], validationRules[name]);
-        setErrors(prev => ({ ...prev, [name]: error || '' }));
-    }, [formValues, validationRules]);
-
-    const handleSubmit = useCallback((e: React.FormEvent) => {
-        e.preventDefault();
-
-        const formErrors = validateForm(formValues, validationRules);
-        setErrors(formErrors);
-        
-        const allTouched: Record<string, boolean> = {};
-        Object.keys(validationRules).forEach(fieldName => {
-            allTouched[fieldName] = true;
-        });
-        setTouched(allTouched);
-
-        if (Object.keys(formErrors).length === 0) {
-            onSubmit(formValues);
-        }
-    }, [formValues, validationRules, onSubmit]);
-
-    // Process children and inject props
-    const childrenWithProps = React.Children.map(children, child => {
-        if (React.isValidElement(child)) {
-            const element = child as React.ReactElement<any>;
-            const childName = element.props.name;
-
-            if (childName) {
-                // Check if this is a CheckboxGroup by looking at the component type
-                const isCheckboxGroup = element.props && element.props.options !== undefined;
-
-                if (isCheckboxGroup) {
-                    // For CheckboxGroup, pass group handlers
-                    return React.cloneElement(element, {
-                        values: formValues[childName] || [],
-                        onChange: handleGroupChange,
-                        onBlur: handleGroupBlur,
-                        error: errors[childName],
-                        touched: touched[childName],
-                        'data-touched': touched[childName] || false,
-                        'data-error': !!errors[childName]
-                    });
-                } else {
-                    // For regular inputs
-                    const hasError = !!errors[childName];
-                    const isTouched = touched[childName];
-                    const isSuccess = isTouched && !hasError;
-                    
-                    let className = 'form-validator-field';
-                    if (hasError) className += ' error';
-                    if (isSuccess) className += ' form-validator-success';
-                    if (element.props.className) className += ` ${element.props.className}`;
-
-                    return React.cloneElement(element, {
-                        onChange: handleChange,
-                        onBlur: handleBlur,
-                        value: formValues[childName] || '',
-                        className,
-                        style: customStyles[childName],
-                        'data-theme': theme,
-                        'data-touched': isTouched,
-                        'data-error': hasError
-                    });
-                }
-            }
-        }
-        return child;
+  const getVisibleErrors = useCallback(() => {
+    const visibleErrors: ErrorState = {};
+    Object.keys(errors).forEach((fieldName) => {
+      if (touched[fieldName] && errors[fieldName]) {
+        visibleErrors[fieldName] = errors[fieldName];
+      }
     });
+    return visibleErrors;
+  }, [errors, touched]);
 
-    // Only show error messages for touched fields, and place them near the field
-    const errorElements = Object.keys(touched).map(fieldName => {
-        if (touched[fieldName] && errors[fieldName]) {
-            return (
-                <div 
-                    key={fieldName} 
-                    className={styles['form-validator-error-message']}
-                    data-field={fieldName}
-                >
-                    {errors[fieldName]}
-                </div>
-            );
-        }
-        return null;
-    }).filter(Boolean);
+  const debouncedValidate = useDebounce((name: string, value: any) => {
+    const error = validateField(value, validationRules[name]);
+    setErrors((prev) => ({ ...prev, [name]: error || "" }));
+  }, debounceDelay);
 
-    return (
-        <form 
-            onSubmit={handleSubmit}
-            className={`form-validator-theme-${theme}`}
-            style={customStyles.form}
-            noValidate
-        >
-            {childrenWithProps}
-            {/* Render errors at the bottom of the form */}
-            {errorElements.length > 0 && (
-                <div className={styles['error-summary']}>
-                    {errorElements}
-                </div>
-            )}
-            <button type="submit" style={{ display: 'none' }}>Submit</button>
-        </form>
-    );
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      const { name, value, type, checked } = e.target as HTMLInputElement;
+
+      let fieldValue: any = value;
+
+      if (type === "checkbox") {
+        fieldValue = checked; // single checkbox only
+      }
+
+      setFormValues((prev) => ({ ...prev, [name]: fieldValue }));
+
+      if (enableDebounce) {
+        debouncedValidate(name, fieldValue);
+      } else {
+        const error = validateField(fieldValue, validationRules[name]);
+        setErrors((prev) => ({ ...prev, [name]: error || "" }));
+      }
+    },
+    [enableDebounce, debouncedValidate, validationRules]
+  );
+
+  const handleBlur = useCallback(
+    (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
+      const { name, value, type, checked } = e.target as HTMLInputElement;
+
+      let fieldValue: any = value;
+      if (type === "checkbox") fieldValue = checked;
+
+      setTouched((prev) => ({ ...prev, [name]: true }));
+
+      const error = validateField(fieldValue, validationRules[name]);
+      setErrors((prev) => ({ ...prev, [name]: error || "" }));
+    },
+    [validationRules]
+  );
+
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+
+      const formErrors = validateForm(formValues, validationRules);
+      setErrors(formErrors);
+
+      const allTouched: Record<string, boolean> = {};
+      Object.keys(validationRules).forEach(
+        (fieldName) => (allTouched[fieldName] = true)
+      );
+      setTouched(allTouched);
+
+      if (Object.keys(formErrors).length === 0) {
+        onSubmit(formValues);
+      }
+    },
+    [formValues, validationRules, onSubmit]
+  );
+
+  const childrenWithProps = React.Children.map(children, (child) => {
+    if (!React.isValidElement(child)) return child;
+
+    const element: any = child;
+    if (!element.props.name) return child;
+
+    const fieldName = element.props.name;
+    const hasError = !!errors[fieldName];
+    const isTouched = touched[fieldName];
+    const isSuccess = isTouched && !hasError;
+
+    // ⭐ SPECIAL CASE → CheckboxGroup
+    if (element.type === CheckboxGroup) {
+      return React.cloneElement(element, {
+        values: formValues[fieldName] || [],
+        onChange: (name: string, vals: string[]) => {
+          setFormValues((prev) => ({ ...prev, [name]: vals }));
+
+          const error = validateField(vals, validationRules[name]);
+          setErrors((prev) => ({ ...prev, [name]: error || "" }));
+        },
+        onBlur: (name: string) =>
+          setTouched((prev) => ({ ...prev, [name]: true })),
+        error: errors[fieldName],
+        touched: touched[fieldName],
+      });
+    }
+
+    let className = styles["form-validator-field"];
+    if (hasError) className += ` ${styles.error}`;
+    if (isSuccess) className += ` ${styles["form-validator-success"]}`;
+    if (element.props.className) className += ` ${element.props.className}`;
+
+    return React.cloneElement(child, {
+      onChange: handleChange,
+      onBlur: handleBlur,
+      value: formValues[fieldName] ?? "",
+      checked:
+        typeof formValues[fieldName] === "boolean"
+          ? formValues[fieldName]
+          : undefined,
+      className,
+      style: customStyles[fieldName],
+      "data-theme": theme,
+    });
+  });
+
+  const visibleErrors = getVisibleErrors();
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className={`form-validator-theme-${theme}`}
+      style={customStyles.form}
+      noValidate
+    >
+      {childrenWithProps}
+
+      {Object.keys(visibleErrors).length > 0 && (
+        <div className={styles["error-summary"]}>
+          {Object.values(visibleErrors).map((err, i) => (
+            <div key={i} className={styles["form-validator-error-message"]}>
+              {err}
+            </div>
+          ))}
+        </div>
+      )}
+    </form>
+  );
 };
