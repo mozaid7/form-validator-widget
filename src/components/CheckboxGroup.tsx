@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from '../styles/animations.module.css';
 
 interface CheckboxOption {
@@ -40,8 +40,17 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
     onChange?.(name, newValues);
   };
 
+  // Notify form of blur when any checkbox loses focus
+  const handleBlur = () => {
+    onBlur?.(name);
+  };
+
   return (
-    <div className={`${styles['checkbox-group']} ${className}`}>
+    <div 
+      className={`${styles['checkbox-group']} ${className}`}
+      data-touched={touched}
+      data-error={error}
+    >
       {options.map(option => (
         <label key={option.value} className={styles['checkbox-label']}>
           <input
@@ -50,10 +59,8 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
             value={option.value}
             checked={values.includes(option.value)}
             onChange={handleChange}
-            onBlur={() => onBlur?.(name)}
+            onBlur={handleBlur}
             className={`${styles['checkbox-input']} ${error && touched ? styles['error'] : ''}`}
-            data-touched={touched}
-            data-error={error}
           />
           {option.label}
         </label>
