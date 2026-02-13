@@ -17,6 +17,7 @@ export const FormValidator: React.FC<FormValidatorProps> = ({
     const [errors, setErrors] = useState<ErrorState>({});
     const [touched, setTouched] = useState<Record<string, boolean>>({});
 
+    // Get visible errors (only for touched fields)
     const getVisibleErrors = useCallback(() => {
         const visibleErrors: ErrorState = {};
         Object.keys(errors).forEach(fieldName => {
@@ -68,6 +69,21 @@ export const FormValidator: React.FC<FormValidatorProps> = ({
         setErrors(prev => ({ ...prev, [name]: error || '' }));
     }, [validationRules]);
 
+    // Special handler for CheckboxGroup
+    const handleGroupChange = useCallback((name: string, values: string[]) => {
+        setFormValues(prev => ({ ...prev, [name]: values }));
+        
+        const error = validateField(values, validationRules[name]);
+        setErrors(prev => ({ ...prev, [name]: error || '' }));
+    }, [validationRules]);
+
+    const handleGroupBlur = useCallback((name: string) => {
+        setTouched(prev => ({ ...prev, [name]: true }));
+        
+        const error = validateField(formValues[name], validationRules[name]);
+        setErrors(prev => ({ ...prev, [name]: error || '' }));
+    }, [formValues, validationRules]);
+
     const handleSubmit = useCallback((e: React.FormEvent) => {
         e.preventDefault();
 
@@ -85,52 +101,70 @@ export const FormValidator: React.FC<FormValidatorProps> = ({
         }
     }, [formValues, validationRules, onSubmit]);
 
+    // Process children and inject props
     const childrenWithProps = React.Children.map(children, child => {
         if (React.isValidElement(child)) {
-            const element = child as React.ReactElement<Record<string, any>>;
+            const element = child as React.ReactElement<any>;
+            const childName = element.props.name;
 
-            if (element.props.name) {
-                const fieldName = element.props.name;
-                const hasError = !!errors[fieldName];
-                const isTouched = touched[fieldName];
-                const isSuccess = isTouched && !hasError;
-                
-                let className = 'form-validator-field';
-                if (hasError) className += ' error';
-                if (isSuccess) className += ' form-validator-success';
-                if (element.props.className) className += ` ${element.props.className}`;
+            if (childName) {
+                // Check if this is a CheckboxGroup by looking at the component type
+                const isCheckboxGroup = element.type === 'CheckboxGroup' || 
+                    (typeof element.type === 'function' && element.type.name === 'CheckboxGroup');
 
-                const props: any = {
-                    onChange: handleChange,
-                    onBlur: handleBlur,
-                    value: formValues[fieldName] || '',
-                    className,
-                    style: customStyles[fieldName],
-                    'data-theme': theme,
-                    'data-touched': isTouched,
-                    'data-error': hasError
-                };
+                if (isCheckboxGroup) {
+                    // For CheckboxGroup, pass group handlers
+                    return React.cloneElement(element, {
+                        values: formValues[childName] || [],
+                        onChange: handleGroupChange,
+                        onBlur: handleGroupBlur,
+                        error: errors[childName],
+                        touched: touched[childName],
+                        'data-touched': touched[childName],
+                        'data-error': !!errors[childName]
+                    });
+                } else {
+                    // For regular inputs
+                    const hasError = !!errors[childName];
+                    const isTouched = touched[childName];
+                    const isSuccess = isTouched && !hasError;
+                    
+                    let className = 'form-validator-field';
+                    if (hasError) className += ' error';
+                    if (isSuccess) className += ' form-validator-success';
+                    if (element.props.className) className += ` ${element.props.className}`;
 
-                return React.cloneElement(child, props);
+                    return React.cloneElement(element, {
+                        onChange: handleChange,
+                        onBlur: handleBlur,
+                        value: formValues[childName] || '',
+                        className,
+                        style: customStyles[childName],
+                        'data-theme': theme,
+                        'data-touched': isTouched,
+                        'data-error': hasError
+                    });
+                }
             }
         }
         return child;
     });
 
-    const visibleErrors = getVisibleErrors();
-    const errorElements = Object.keys(visibleErrors).length > 0 && (
-    <div className={styles['error-summary']}>
-        {Object.keys(visibleErrors).map(fieldName => (
-        <div 
-            key={fieldName} 
-            className={styles['form-validator-error-message']}
-            data-field={fieldName}
-        >
-            {visibleErrors[fieldName]}
-        </div>
-        ))}
-    </div>
-    );
+    // Only show error messages for touched fields, and place them near the field
+    const errorElements = Object.keys(touched).map(fieldName => {
+        if (touched[fieldName] && errors[fieldName]) {
+            return (
+                <div 
+                    key={fieldName} 
+                    className={styles['form-validator-error-message']}
+                    data-field={fieldName}
+                >
+                    {errors[fieldName]}
+                </div>
+            );
+        }
+        return null;
+    }).filter(Boolean);
 
     return (
         <form 
@@ -140,7 +174,12 @@ export const FormValidator: React.FC<FormValidatorProps> = ({
             noValidate
         >
             {childrenWithProps}
-            {errorElements}
+            {/* Render errors at the bottom of the form */}
+            {errorElements.length > 0 && (
+                <div className={styles['error-summary']}>
+                    {errorElements}
+                </div>
+            )}
             <button type="submit" style={{ display: 'none' }}>Submit</button>
         </form>
     );
