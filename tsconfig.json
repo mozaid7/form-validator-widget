@@ -23,7 +23,7 @@
     "forceConsistentCasingInFileNames": true
   },
   
-  "include": ["src"],
+  "include": ["src", "src/styles/globals.d.ts"],
   
   "exclude": ["node_modules", "dist"]
 }
