@@ -174,17 +174,34 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z = "@keyframes animations-module_shake__qVr3b{0%,to{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-5px)}20%,40%,60%,80%{transform:translateX(5px)}}@keyframes animations-module_slideIn__lwqyK{0%{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}@keyframes animations-module_gentlePulse__xvUHG{0%{box-shadow:0 0 0 0 rgba(59,130,246,.5)}70%{box-shadow:0 0 0 5px rgba(59,130,246,0)}to{box-shadow:0 0 0 0 rgba(59,130,246,0)}}.animations-module_form-validator-field__pirKM{transition:border-color .2s ease,box-shadow .2s ease}.animations-module_form-validator-field__pirKM:focus{animation:animations-module_gentlePulse__xvUHG 1.5s infinite;border-color:#3b82f6;outline:none}.animations-module_form-validator-field__pirKM.animations-module_error__Vq-ZO{animation:animations-module_shake__qVr3b .5s cubic-bezier(.36,.07,.19,.97) both;border-color:#ef4444}.animations-module_form-validator-error-message__h1Ge-{animation:animations-module_slideIn__lwqyK .2s ease-out;color:#ef4444;font-size:.875rem;margin-top:.25rem}.animations-module_form-validator-theme-dark__ySqnh .animations-module_form-validator-field__pirKM{background-color:#1f2937;border-color:#4b5563;color:#fff}.animations-module_form-validator-success__JkYav{background-image:url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E\");background-position:right .5rem center;background-repeat:no-repeat;border-color:#10b981!important;padding-right:2rem}.animations-module_form-validator-field-container__9P7zl{margin-bottom:1rem}.animations-module_form-validator-label__O7u2s{color:#374151;display:block;font-size:.875rem;font-weight:500;margin-bottom:.25rem}.animations-module_form-validator-theme-dark__ySqnh .animations-module_form-validator-label__O7u2s{color:#e5e7eb}.animations-module_checkbox-group__nmUwv{border:1px solid #e5e7eb;border-radius:.375rem;display:flex;flex-direction:column;gap:.75rem;margin-bottom:1rem;padding:.5rem}.animations-module_checkbox-label__XD-M1{align-items:center;color:#374151;cursor:pointer;display:flex;font-size:.95rem;gap:.75rem;transition:color .2s ease}.animations-module_checkbox-label__XD-M1:hover{color:#1f2937}.animations-module_checkbox-input__hRJLO{border:2px solid #d1d5db;border-radius:.25rem;cursor:pointer;height:1.2rem;transition:all .2s ease;width:1.2rem}.animations-module_checkbox-input__hRJLO:checked{background-color:#3b82f6;border-color:#3b82f6}.animations-module_checkbox-input__hRJLO.animations-module_error__Vq-ZO{border-color:#ef4444}.animations-module_checkbox-input__hRJLO:focus{ring:2px solid #3b82f6;ring-offset:2px;outline:none}.animations-module_error-summary__x5Eej{background-color:#fef2f2;border:1px solid #fecaca;border-radius:.375rem;margin-top:1rem;padding:1rem}.animations-module_error-summary__x5Eej .animations-module_form-validator-error-message__h1Ge-{border-left:3px solid #ef4444;color:#ef4444;font-size:.875rem;margin-bottom:.5rem;padding-left:.5rem}.animations-module_error-summary__x5Eej .animations-module_form-validator-error-message__h1Ge-:last-child{margin-bottom:0}.animations-module_form-validator-theme-dark__ySqnh .animations-module_checkbox-label__XD-M1{color:#e5e7eb}.animations-module_form-validator-theme-dark__ySqnh .animations-module_checkbox-group__nmUwv{border-color:#4b5563}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFuaW1hdGlvbnMubW9kdWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQSwwQ0FDRSxNQUFXLHVCQUEwQixDQUNyQyxvQkFBMEIsMEJBQTZCLENBQ3ZELGdCQUFxQix5QkFBNEIsQ0FDbkQsQ0FFQSw0Q0FDRSxHQUNFLFNBQVUsQ0FDViwyQkFDRixDQUNBLEdBQ0UsU0FBVSxDQUNWLHVCQUNGLENBQ0YsQ0FFQSxnREFDRSxHQUFLLHNDQUE2QyxDQUNsRCxJQUFNLHVDQUE2QyxDQUNuRCxHQUFPLHFDQUEyQyxDQUNwRCxDQUVBLCtDQUNFLG9EQUNGLENBRUEscURBR0UsNERBQW9DLENBRHBDLG9CQUFxQixDQURyQixZQUdGLENBRUEsOEVBRUUsK0VBQStELENBRC9ELG9CQUVGLENBRUEsdURBSUUsdURBQWdDLENBSGhDLGFBQWMsQ0FDZCxpQkFBbUIsQ0FDbkIsaUJBRUYsQ0FFQSxtR0FDRSx3QkFBeUIsQ0FDekIsb0JBQXFCLENBQ3JCLFVBQ0YsQ0FFQSxpREFFRSx5T0FBa1AsQ0FFbFAsc0NBQXdDLENBRHhDLDJCQUE0QixDQUY1Qiw4QkFBZ0MsQ0FJaEMsa0JBQ0YsQ0FFQSx5REFDRSxrQkFDRixDQUVBLCtDQUtFLGFBQWMsQ0FKZCxhQUFjLENBRWQsaUJBQW1CLENBQ25CLGVBQWdCLENBRmhCLG9CQUlGLENBRUEsbUdBQ0UsYUFDRixDQU1BLHlDQU1FLHdCQUF5QixDQUN6QixxQkFBdUIsQ0FOdkIsWUFBYSxDQUNiLHFCQUFzQixDQUN0QixVQUFZLENBQ1osa0JBQW1CLENBQ25CLGFBR0YsQ0FFQSx5Q0FFRSxrQkFBbUIsQ0FJbkIsYUFBYyxDQUZkLGNBQWUsQ0FIZixZQUFhLENBSWIsZ0JBQWtCLENBRmxCLFVBQVksQ0FJWix5QkFDRixDQUVBLCtDQUNFLGFBQ0YsQ0FFQSx5Q0FJRSx3QkFBeUIsQ0FDekIsb0JBQXNCLENBRnRCLGNBQWUsQ0FEZixhQUFjLENBSWQsdUJBQXlCLENBTHpCLFlBTUYsQ0FFQSxpREFDRSx3QkFBeUIsQ0FDekIsb0JBQ0YsQ0FFQSx3RUFDRSxvQkFDRixDQUVBLCtDQUVFLHNCQUF1QixDQUN2QixlQUFnQixDQUZoQixZQUdGLENBRUEsd0NBR0Usd0JBQXlCLENBRXpCLHdCQUF5QixDQUR6QixxQkFBdUIsQ0FIdkIsZUFBZ0IsQ0FDaEIsWUFJRixDQUVBLCtGQUtFLDZCQUE4QixDQUo5QixhQUFjLENBQ2QsaUJBQW1CLENBQ25CLG1CQUFxQixDQUNyQixrQkFFRixDQUVBLDBHQUNFLGVBQ0YsQ0FFQSw2RkFDRSxhQUNGLENBRUEsNkZBQ0Usb0JBQ0YiLCJmaWxlIjoiYW5pbWF0aW9ucy5tb2R1bGUuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbkBrZXlmcmFtZXMgc2hha2Uge1xyXG4gIDAlLCAxMDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVYKDApOyB9XHJcbiAgMTAlLCAzMCUsIDUwJSwgNzAlLCA5MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoLTVweCk7IH1cclxuICAyMCUsIDQwJSwgNjAlLCA4MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoNXB4KTsgfVxyXG59XHJcblxyXG5Aa2V5ZnJhbWVzIHNsaWRlSW4ge1xyXG4gIGZyb20ge1xyXG4gICAgb3BhY2l0eTogMDtcclxuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtMTBweCk7XHJcbiAgfVxyXG4gIHRvIHtcclxuICAgIG9wYWNpdHk6IDE7XHJcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMCk7XHJcbiAgfVxyXG59XHJcblxyXG5Aa2V5ZnJhbWVzIGdlbnRsZVB1bHNlIHtcclxuICAwJSB7IGJveC1zaGFkb3c6IDAgMCAwIDAgcmdiYSg1OSwgMTMwLCAyNDYsIDAuNSk7IH1cclxuICA3MCUgeyBib3gtc2hhZG93OiAwIDAgMCA1cHggcmdiYSg1OSwgMTMwLCAyNDYsIDApOyB9XHJcbiAgMTAwJSB7IGJveC1zaGFkb3c6IDAgMCAwIDAgcmdiYSg1OSwgMTMwLCAyNDYsIDApOyB9XHJcbn1cclxuXHJcbi5mb3JtLXZhbGlkYXRvci1maWVsZCB7XHJcbiAgdHJhbnNpdGlvbjogYm9yZGVyLWNvbG9yIDAuMnMgZWFzZSwgYm94LXNoYWRvdyAwLjJzIGVhc2U7XHJcbn1cclxuXHJcbi5mb3JtLXZhbGlkYXRvci1maWVsZDpmb2N1cyB7XHJcbiAgb3V0bGluZTogbm9uZTtcclxuICBib3JkZXItY29sb3I6ICMzYjgyZjY7XHJcbiAgYW5pbWF0aW9uOiBnZW50bGVQdWxzZSAxLjVzIGluZmluaXRlO1xyXG59XHJcblxyXG4uZm9ybS12YWxpZGF0b3ItZmllbGQuZXJyb3Ige1xyXG4gIGJvcmRlci1jb2xvcjogI2VmNDQ0NDtcclxuICBhbmltYXRpb246IHNoYWtlIDAuNXMgY3ViaWMtYmV6aWVyKDAuMzYsIDAuMDcsIDAuMTksIDAuOTcpIGJvdGg7XHJcbn1cclxuXHJcbi5mb3JtLXZhbGlkYXRvci1lcnJvci1tZXNzYWdlIHtcclxuICBjb2xvcjogI2VmNDQ0NDtcclxuICBmb250LXNpemU6IDAuODc1cmVtO1xyXG4gIG1hcmdpbi10b3A6IDAuMjVyZW07XHJcbiAgYW5pbWF0aW9uOiBzbGlkZUluIDAuMnMgZWFzZS1vdXQ7XHJcbn1cclxuXHJcbi5mb3JtLXZhbGlkYXRvci10aGVtZS1kYXJrIC5mb3JtLXZhbGlkYXRvci1maWVsZCB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogIzFmMjkzNztcclxuICBib3JkZXItY29sb3I6ICM0YjU1NjM7XHJcbiAgY29sb3I6IHdoaXRlO1xyXG59XHJcblxyXG4uZm9ybS12YWxpZGF0b3Itc3VjY2VzcyB7XHJcbiAgYm9yZGVyLWNvbG9yOiAjMTBiOTgxICFpbXBvcnRhbnQ7XHJcbiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKFwiZGF0YTppbWFnZS9zdmcreG1sLCUzQ3N2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNicgaGVpZ2h0PScxNicgdmlld0JveD0nMCAwIDI0IDI0JyBmaWxsPSdub25lJyBzdHJva2U9JyUyMzEwYjk4MScgc3Ryb2tlLXdpZHRoPScyJyUzRSUzQ3BvbHlsaW5lIHBvaW50cz0nMjAgNiA5IDE3IDQgMTInJTNFJTNDL3BvbHlsaW5lJTNFJTNDL3N2ZyUzRVwiKTtcclxuICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xyXG4gIGJhY2tncm91bmQtcG9zaXRpb246IHJpZ2h0IDAuNXJlbSBjZW50ZXI7XHJcbiAgcGFkZGluZy1yaWdodDogMnJlbTtcclxufVxyXG5cclxuLmZvcm0tdmFsaWRhdG9yLWZpZWxkLWNvbnRhaW5lciB7XHJcbiAgbWFyZ2luLWJvdHRvbTogMXJlbTtcclxufVxyXG5cclxuLmZvcm0tdmFsaWRhdG9yLWxhYmVsIHtcclxuICBkaXNwbGF5OiBibG9jaztcclxuICBtYXJnaW4tYm90dG9tOiAwLjI1cmVtO1xyXG4gIGZvbnQtc2l6ZTogMC44NzVyZW07XHJcbiAgZm9udC13ZWlnaHQ6IDUwMDtcclxuICBjb2xvcjogIzM3NDE1MTtcclxufVxyXG5cclxuLmZvcm0tdmFsaWRhdG9yLXRoZW1lLWRhcmsgLmZvcm0tdmFsaWRhdG9yLWxhYmVsIHtcclxuICBjb2xvcjogI2U1ZTdlYjtcclxufVxyXG5cclxuLmZvcm0tdmFsaWRhdG9yLWlucHV0IHtcclxuICBjb21wb3NlczogZm9ybS12YWxpZGF0b3ItZmllbGQ7XHJcbn1cclxuXHJcbi5jaGVja2JveC1ncm91cCB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIGdhcDogMC43NXJlbTtcclxuICBtYXJnaW4tYm90dG9tOiAxcmVtO1xyXG4gIHBhZGRpbmc6IDAuNXJlbTtcclxuICBib3JkZXI6IDFweCBzb2xpZCAjZTVlN2ViO1xyXG4gIGJvcmRlci1yYWRpdXM6IDAuMzc1cmVtO1xyXG59XHJcblxyXG4uY2hlY2tib3gtbGFiZWwge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBnYXA6IDAuNzVyZW07XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG4gIGZvbnQtc2l6ZTogMC45NXJlbTtcclxuICBjb2xvcjogIzM3NDE1MTtcclxuICB0cmFuc2l0aW9uOiBjb2xvciAwLjJzIGVhc2U7XHJcbn1cclxuXHJcbi5jaGVja2JveC1sYWJlbDpob3ZlciB7XHJcbiAgY29sb3I6ICMxZjI5Mzc7XHJcbn1cclxuXHJcbi5jaGVja2JveC1pbnB1dCB7XHJcbiAgd2lkdGg6IDEuMnJlbTtcclxuICBoZWlnaHQ6IDEuMnJlbTtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgYm9yZGVyOiAycHggc29saWQgI2QxZDVkYjtcclxuICBib3JkZXItcmFkaXVzOiAwLjI1cmVtO1xyXG4gIHRyYW5zaXRpb246IGFsbCAwLjJzIGVhc2U7XHJcbn1cclxuXHJcbi5jaGVja2JveC1pbnB1dDpjaGVja2VkIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjM2I4MmY2O1xyXG4gIGJvcmRlci1jb2xvcjogIzNiODJmNjtcclxufVxyXG5cclxuLmNoZWNrYm94LWlucHV0LmVycm9yIHtcclxuICBib3JkZXItY29sb3I6ICNlZjQ0NDQ7XHJcbn1cclxuXHJcbi5jaGVja2JveC1pbnB1dDpmb2N1cyB7XHJcbiAgb3V0bGluZTogbm9uZTtcclxuICByaW5nOiAycHggc29saWQgIzNiODJmNjtcclxuICByaW5nLW9mZnNldDogMnB4O1xyXG59XHJcblxyXG4uZXJyb3Itc3VtbWFyeSB7XHJcbiAgbWFyZ2luLXRvcDogMXJlbTtcclxuICBwYWRkaW5nOiAxcmVtO1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNmZWYyZjI7XHJcbiAgYm9yZGVyLXJhZGl1czogMC4zNzVyZW07XHJcbiAgYm9yZGVyOiAxcHggc29saWQgI2ZlY2FjYTtcclxufVxyXG5cclxuLmVycm9yLXN1bW1hcnkgLmZvcm0tdmFsaWRhdG9yLWVycm9yLW1lc3NhZ2Uge1xyXG4gIGNvbG9yOiAjZWY0NDQ0O1xyXG4gIGZvbnQtc2l6ZTogMC44NzVyZW07XHJcbiAgbWFyZ2luLWJvdHRvbTogMC41cmVtO1xyXG4gIHBhZGRpbmctbGVmdDogMC41cmVtO1xyXG4gIGJvcmRlci1sZWZ0OiAzcHggc29saWQgI2VmNDQ0NDtcclxufVxyXG5cclxuLmVycm9yLXN1bW1hcnkgLmZvcm0tdmFsaWRhdG9yLWVycm9yLW1lc3NhZ2U6bGFzdC1jaGlsZCB7XHJcbiAgbWFyZ2luLWJvdHRvbTogMDtcclxufVxyXG5cclxuLmZvcm0tdmFsaWRhdG9yLXRoZW1lLWRhcmsgLmNoZWNrYm94LWxhYmVsIHtcclxuICBjb2xvcjogI2U1ZTdlYjtcclxufVxyXG5cclxuLmZvcm0tdmFsaWRhdG9yLXRoZW1lLWRhcmsgLmNoZWNrYm94LWdyb3VwIHtcclxuICBib3JkZXItY29sb3I6ICM0YjU1NjM7XHJcbn0iXX0= */";
+var css_248z = "@keyframes animations-module_shake__qVr3b{0%,to{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-5px)}20%,40%,60%,80%{transform:translateX(5px)}}@keyframes animations-module_slideIn__lwqyK{0%{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}@keyframes animations-module_gentlePulse__xvUHG{0%{box-shadow:0 0 0 0 rgba(59,130,246,.5)}70%{box-shadow:0 0 0 5px rgba(59,130,246,0)}to{box-shadow:0 0 0 0 rgba(59,130,246,0)}}.animations-module_form-validator-field__pirKM{transition:border-color .2s ease,box-shadow .2s ease}.animations-module_form-validator-field__pirKM:focus{animation:animations-module_gentlePulse__xvUHG 1.5s infinite;border-color:#3b82f6;outline:none}.animations-module_form-validator-field__pirKM.animations-module_error__Vq-ZO{animation:animations-module_shake__qVr3b .5s cubic-bezier(.36,.07,.19,.97) both;border-color:#ef4444}.animations-module_form-validator-error-message__h1Ge-{animation:animations-module_slideIn__lwqyK .2s ease-out;color:#ef4444;font-size:.875rem;margin-top:.25rem}.animations-module_form-validator-theme-dark__ySqnh .animations-module_form-validator-field__pirKM{background-color:#1f2937;border-color:#4b5563;color:#fff}.animations-module_form-validator-success__JkYav{background-image:url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E\");background-position:right .5rem center;background-repeat:no-repeat;border-color:#10b981!important;padding-right:2rem}.animations-module_form-validator-field-container__9P7zl{margin-bottom:1rem}.animations-module_form-validator-label__O7u2s{color:#374151;display:block;font-size:.875rem;font-weight:500;margin-bottom:.25rem}.animations-module_form-validator-theme-dark__ySqnh .animations-module_form-validator-label__O7u2s{color:#e5e7eb}.animations-module_checkbox-group__nmUwv{border:1px solid #e5e7eb;border-radius:.375rem;display:flex;flex-direction:column;gap:.75rem;margin-bottom:1rem;padding:.5rem}.animations-module_checkbox-label__XD-M1{align-items:center;color:#374151;cursor:pointer;display:flex;font-size:.95rem;gap:.75rem;transition:color .2s ease}.animations-module_checkbox-label__XD-M1:hover{color:#1f2937}.animations-module_checkbox-input__hRJLO{border:2px solid #d1d5db;border-radius:.25rem;cursor:pointer;height:1.2rem;transition:all .2s ease;width:1.2rem}.animations-module_checkbox-input__hRJLO:checked{background-color:#3b82f6;border-color:#3b82f6}.animations-module_checkbox-input__hRJLO.animations-module_error__Vq-ZO{border-color:#ef4444}.animations-module_checkbox-input__hRJLO:focus{box-shadow:0 0 0 2px #3b82f6;outline:none}.animations-module_error-summary__x5Eej{background-color:#fef2f2;border:1px solid #fecaca;border-radius:.375rem;margin-top:1rem;padding:1rem}.animations-module_error-summary__x5Eej .animations-module_form-validator-error-message__h1Ge-{border-left:3px solid #ef4444;color:#ef4444;font-size:.875rem;margin-bottom:.5rem;padding-left:.5rem}.animations-module_error-summary__x5Eej .animations-module_form-validator-error-message__h1Ge-:last-child{margin-bottom:0}.animations-module_form-validator-theme-dark__ySqnh .animations-module_checkbox-label__XD-M1{color:#e5e7eb}.animations-module_form-validator-theme-dark__ySqnh .animations-module_checkbox-group__nmUwv{border-color:#4b5563}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFuaW1hdGlvbnMubW9kdWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQSwwQ0FDRSxNQUFXLHVCQUEwQixDQUNyQyxvQkFBMEIsMEJBQTZCLENBQ3ZELGdCQUFxQix5QkFBNEIsQ0FDbkQsQ0FFQSw0Q0FDRSxHQUNFLFNBQVUsQ0FDViwyQkFDRixDQUNBLEdBQ0UsU0FBVSxDQUNWLHVCQUNGLENBQ0YsQ0FFQSxnREFDRSxHQUFLLHNDQUE2QyxDQUNsRCxJQUFNLHVDQUE2QyxDQUNuRCxHQUFPLHFDQUEyQyxDQUNwRCxDQUVBLCtDQUNFLG9EQUNGLENBRUEscURBR0UsNERBQW9DLENBRHBDLG9CQUFxQixDQURyQixZQUdGLENBRUEsOEVBRUUsK0VBQStELENBRC9ELG9CQUVGLENBRUEsdURBSUUsdURBQWdDLENBSGhDLGFBQWMsQ0FDZCxpQkFBbUIsQ0FDbkIsaUJBRUYsQ0FFQSxtR0FDRSx3QkFBeUIsQ0FDekIsb0JBQXFCLENBQ3JCLFVBQ0YsQ0FFQSxpREFFRSx5T0FBa1AsQ0FFbFAsc0NBQXdDLENBRHhDLDJCQUE0QixDQUY1Qiw4QkFBZ0MsQ0FJaEMsa0JBQ0YsQ0FFQSx5REFDRSxrQkFDRixDQUVBLCtDQUtFLGFBQWMsQ0FKZCxhQUFjLENBRWQsaUJBQW1CLENBQ25CLGVBQWdCLENBRmhCLG9CQUlGLENBRUEsbUdBQ0UsYUFDRixDQU1BLHlDQU1FLHdCQUF5QixDQUN6QixxQkFBdUIsQ0FOdkIsWUFBYSxDQUNiLHFCQUFzQixDQUN0QixVQUFZLENBQ1osa0JBQW1CLENBQ25CLGFBR0YsQ0FFQSx5Q0FFRSxrQkFBbUIsQ0FJbkIsYUFBYyxDQUZkLGNBQWUsQ0FIZixZQUFhLENBSWIsZ0JBQWtCLENBRmxCLFVBQVksQ0FJWix5QkFDRixDQUVBLCtDQUNFLGFBQ0YsQ0FFQSx5Q0FJRSx3QkFBeUIsQ0FDekIsb0JBQXNCLENBRnRCLGNBQWUsQ0FEZixhQUFjLENBSWQsdUJBQXlCLENBTHpCLFlBTUYsQ0FFQSxpREFDRSx3QkFBeUIsQ0FDekIsb0JBQ0YsQ0FFQSx3RUFDRSxvQkFDRixDQUVBLCtDQUVFLDRCQUE2QixDQUQ3QixZQUVGLENBRUEsd0NBR0Usd0JBQXlCLENBRXpCLHdCQUF5QixDQUR6QixxQkFBdUIsQ0FIdkIsZUFBZ0IsQ0FDaEIsWUFJRixDQUVBLCtGQUtFLDZCQUE4QixDQUo5QixhQUFjLENBQ2QsaUJBQW1CLENBQ25CLG1CQUFxQixDQUNyQixrQkFFRixDQUVBLDBHQUNFLGVBQ0YsQ0FFQSw2RkFDRSxhQUNGLENBRUEsNkZBQ0Usb0JBQ0YiLCJmaWxlIjoiYW5pbWF0aW9ucy5tb2R1bGUuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbkBrZXlmcmFtZXMgc2hha2Uge1xyXG4gIDAlLCAxMDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVYKDApOyB9XHJcbiAgMTAlLCAzMCUsIDUwJSwgNzAlLCA5MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoLTVweCk7IH1cclxuICAyMCUsIDQwJSwgNjAlLCA4MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoNXB4KTsgfVxyXG59XHJcblxyXG5Aa2V5ZnJhbWVzIHNsaWRlSW4ge1xyXG4gIGZyb20ge1xyXG4gICAgb3BhY2l0eTogMDtcclxuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtMTBweCk7XHJcbiAgfVxyXG4gIHRvIHtcclxuICAgIG9wYWNpdHk6IDE7XHJcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMCk7XHJcbiAgfVxyXG59XHJcblxyXG5Aa2V5ZnJhbWVzIGdlbnRsZVB1bHNlIHtcclxuICAwJSB7IGJveC1zaGFkb3c6IDAgMCAwIDAgcmdiYSg1OSwgMTMwLCAyNDYsIDAuNSk7IH1cclxuICA3MCUgeyBib3gtc2hhZG93OiAwIDAgMCA1cHggcmdiYSg1OSwgMTMwLCAyNDYsIDApOyB9XHJcbiAgMTAwJSB7IGJveC1zaGFkb3c6IDAgMCAwIDAgcmdiYSg1OSwgMTMwLCAyNDYsIDApOyB9XHJcbn1cclxuXHJcbi5mb3JtLXZhbGlkYXRvci1maWVsZCB7XHJcbiAgdHJhbnNpdGlvbjogYm9yZGVyLWNvbG9yIDAuMnMgZWFzZSwgYm94LXNoYWRvdyAwLjJzIGVhc2U7XHJcbn1cclxuXHJcbi5mb3JtLXZhbGlkYXRvci1maWVsZDpmb2N1cyB7XHJcbiAgb3V0bGluZTogbm9uZTtcclxuICBib3JkZXItY29sb3I6ICMzYjgyZjY7XHJcbiAgYW5pbWF0aW9uOiBnZW50bGVQdWxzZSAxLjVzIGluZmluaXRlO1xyXG59XHJcblxyXG4uZm9ybS12YWxpZGF0b3ItZmllbGQuZXJyb3Ige1xyXG4gIGJvcmRlci1jb2xvcjogI2VmNDQ0NDtcclxuICBhbmltYXRpb246IHNoYWtlIDAuNXMgY3ViaWMtYmV6aWVyKDAuMzYsIDAuMDcsIDAuMTksIDAuOTcpIGJvdGg7XHJcbn1cclxuXHJcbi5mb3JtLXZhbGlkYXRvci1lcnJvci1tZXNzYWdlIHtcclxuICBjb2xvcjogI2VmNDQ0NDtcclxuICBmb250LXNpemU6IDAuODc1cmVtO1xyXG4gIG1hcmdpbi10b3A6IDAuMjVyZW07XHJcbiAgYW5pbWF0aW9uOiBzbGlkZUluIDAuMnMgZWFzZS1vdXQ7XHJcbn1cclxuXHJcbi5mb3JtLXZhbGlkYXRvci10aGVtZS1kYXJrIC5mb3JtLXZhbGlkYXRvci1maWVsZCB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogIzFmMjkzNztcclxuICBib3JkZXItY29sb3I6ICM0YjU1NjM7XHJcbiAgY29sb3I6IHdoaXRlO1xyXG59XHJcblxyXG4uZm9ybS12YWxpZGF0b3Itc3VjY2VzcyB7XHJcbiAgYm9yZGVyLWNvbG9yOiAjMTBiOTgxICFpbXBvcnRhbnQ7XHJcbiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKFwiZGF0YTppbWFnZS9zdmcreG1sLCUzQ3N2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNicgaGVpZ2h0PScxNicgdmlld0JveD0nMCAwIDI0IDI0JyBmaWxsPSdub25lJyBzdHJva2U9JyUyMzEwYjk4MScgc3Ryb2tlLXdpZHRoPScyJyUzRSUzQ3BvbHlsaW5lIHBvaW50cz0nMjAgNiA5IDE3IDQgMTInJTNFJTNDL3BvbHlsaW5lJTNFJTNDL3N2ZyUzRVwiKTtcclxuICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xyXG4gIGJhY2tncm91bmQtcG9zaXRpb246IHJpZ2h0IDAuNXJlbSBjZW50ZXI7XHJcbiAgcGFkZGluZy1yaWdodDogMnJlbTtcclxufVxyXG5cclxuLmZvcm0tdmFsaWRhdG9yLWZpZWxkLWNvbnRhaW5lciB7XHJcbiAgbWFyZ2luLWJvdHRvbTogMXJlbTtcclxufVxyXG5cclxuLmZvcm0tdmFsaWRhdG9yLWxhYmVsIHtcclxuICBkaXNwbGF5OiBibG9jaztcclxuICBtYXJnaW4tYm90dG9tOiAwLjI1cmVtO1xyXG4gIGZvbnQtc2l6ZTogMC44NzVyZW07XHJcbiAgZm9udC13ZWlnaHQ6IDUwMDtcclxuICBjb2xvcjogIzM3NDE1MTtcclxufVxyXG5cclxuLmZvcm0tdmFsaWRhdG9yLXRoZW1lLWRhcmsgLmZvcm0tdmFsaWRhdG9yLWxhYmVsIHtcclxuICBjb2xvcjogI2U1ZTdlYjtcclxufVxyXG5cclxuLmZvcm0tdmFsaWRhdG9yLWlucHV0IHtcclxuICBjb21wb3NlczogZm9ybS12YWxpZGF0b3ItZmllbGQ7XHJcbn1cclxuXHJcbi5jaGVja2JveC1ncm91cCB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIGdhcDogMC43NXJlbTtcclxuICBtYXJnaW4tYm90dG9tOiAxcmVtO1xyXG4gIHBhZGRpbmc6IDAuNXJlbTtcclxuICBib3JkZXI6IDFweCBzb2xpZCAjZTVlN2ViO1xyXG4gIGJvcmRlci1yYWRpdXM6IDAuMzc1cmVtO1xyXG59XHJcblxyXG4uY2hlY2tib3gtbGFiZWwge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBnYXA6IDAuNzVyZW07XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG4gIGZvbnQtc2l6ZTogMC45NXJlbTtcclxuICBjb2xvcjogIzM3NDE1MTtcclxuICB0cmFuc2l0aW9uOiBjb2xvciAwLjJzIGVhc2U7XHJcbn1cclxuXHJcbi5jaGVja2JveC1sYWJlbDpob3ZlciB7XHJcbiAgY29sb3I6ICMxZjI5Mzc7XHJcbn1cclxuXHJcbi5jaGVja2JveC1pbnB1dCB7XHJcbiAgd2lkdGg6IDEuMnJlbTtcclxuICBoZWlnaHQ6IDEuMnJlbTtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgYm9yZGVyOiAycHggc29saWQgI2QxZDVkYjtcclxuICBib3JkZXItcmFkaXVzOiAwLjI1cmVtO1xyXG4gIHRyYW5zaXRpb246IGFsbCAwLjJzIGVhc2U7XHJcbn1cclxuXHJcbi5jaGVja2JveC1pbnB1dDpjaGVja2VkIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjM2I4MmY2O1xyXG4gIGJvcmRlci1jb2xvcjogIzNiODJmNjtcclxufVxyXG5cclxuLmNoZWNrYm94LWlucHV0LmVycm9yIHtcclxuICBib3JkZXItY29sb3I6ICNlZjQ0NDQ7XHJcbn1cclxuXHJcbi5jaGVja2JveC1pbnB1dDpmb2N1cyB7XHJcbiAgb3V0bGluZTogbm9uZTtcclxuICBib3gtc2hhZG93OiAwIDAgMCAycHggIzNiODJmNjtcclxufVxyXG5cclxuLmVycm9yLXN1bW1hcnkge1xyXG4gIG1hcmdpbi10b3A6IDFyZW07XHJcbiAgcGFkZGluZzogMXJlbTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmVmMmYyO1xyXG4gIGJvcmRlci1yYWRpdXM6IDAuMzc1cmVtO1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkICNmZWNhY2E7XHJcbn1cclxuXHJcbi5lcnJvci1zdW1tYXJ5IC5mb3JtLXZhbGlkYXRvci1lcnJvci1tZXNzYWdlIHtcclxuICBjb2xvcjogI2VmNDQ0NDtcclxuICBmb250LXNpemU6IDAuODc1cmVtO1xyXG4gIG1hcmdpbi1ib3R0b206IDAuNXJlbTtcclxuICBwYWRkaW5nLWxlZnQ6IDAuNXJlbTtcclxuICBib3JkZXItbGVmdDogM3B4IHNvbGlkICNlZjQ0NDQ7XHJcbn1cclxuXHJcbi5lcnJvci1zdW1tYXJ5IC5mb3JtLXZhbGlkYXRvci1lcnJvci1tZXNzYWdlOmxhc3QtY2hpbGQge1xyXG4gIG1hcmdpbi1ib3R0b206IDA7XHJcbn1cclxuXHJcbi5mb3JtLXZhbGlkYXRvci10aGVtZS1kYXJrIC5jaGVja2JveC1sYWJlbCB7XHJcbiAgY29sb3I6ICNlNWU3ZWI7XHJcbn1cclxuXHJcbi5mb3JtLXZhbGlkYXRvci10aGVtZS1kYXJrIC5jaGVja2JveC1ncm91cCB7XHJcbiAgYm9yZGVyLWNvbG9yOiAjNGI1NTYzO1xyXG59Il19 */";
 var styles = {"form-validator-field":"animations-module_form-validator-field__pirKM","gentlePulse":"animations-module_gentlePulse__xvUHG","error":"animations-module_error__Vq-ZO","shake":"animations-module_shake__qVr3b","form-validator-error-message":"animations-module_form-validator-error-message__h1Ge-","slideIn":"animations-module_slideIn__lwqyK","form-validator-theme-dark":"animations-module_form-validator-theme-dark__ySqnh","form-validator-success":"animations-module_form-validator-success__JkYav","form-validator-field-container":"animations-module_form-validator-field-container__9P7zl","form-validator-label":"animations-module_form-validator-label__O7u2s","form-validator-input":"animations-module_form-validator-input__8Lspk animations-module_form-validator-field__pirKM","checkbox-group":"animations-module_checkbox-group__nmUwv","checkbox-label":"animations-module_checkbox-label__XD-M1","checkbox-input":"animations-module_checkbox-input__hRJLO","error-summary":"animations-module_error-summary__x5Eej"};
 styleInject(css_248z);
 
+var CheckboxGroup = function (_a) {
+    var name = _a.name, options = _a.options, _b = _a.values, values = _b === void 0 ? [] : _b, onChange = _a.onChange, onBlur = _a.onBlur, _c = _a.className, className = _c === void 0 ? "" : _c, error = _a.error, touched = _a.touched;
+    var handleChange = function (e) {
+        var _a = e.target, value = _a.value, checked = _a.checked;
+        var newValues = tslib.__spreadArray([], values, true);
+        if (checked)
+            newValues.push(value);
+        else
+            newValues = newValues.filter(function (v) { return v !== value; });
+        onChange === null || onChange === void 0 ? void 0 : onChange(name, newValues);
+    };
+    return (React.createElement("div", { className: "".concat(styles["checkbox-group"], " ").concat(className) },
+        options.map(function (option) { return (React.createElement("label", { key: option.value, className: styles["checkbox-label"] },
+            React.createElement("input", { type: "checkbox", name: name, value: option.value, checked: values.includes(option.value), onChange: handleChange, onBlur: function () { return onBlur === null || onBlur === void 0 ? void 0 : onBlur(name); }, className: "".concat(styles["checkbox-input"], " ").concat(error && touched ? styles.error : "") }),
+            option.label)); }),
+        error && touched && (React.createElement("div", { className: styles["form-validator-error-message"] }, error))));
+};
+
 var FormValidator = function (_a) {
-    var children = _a.children, validationRules = _a.validationRules, onSubmit = _a.onSubmit, _b = _a.theme, theme = _b === void 0 ? 'light' : _b, _c = _a.customStyles, customStyles = _c === void 0 ? {} : _c, _d = _a.enableDebounce, enableDebounce = _d === void 0 ? true : _d, _e = _a.debounceDelay, debounceDelay = _e === void 0 ? 300 : _e;
+    var children = _a.children, validationRules = _a.validationRules, onSubmit = _a.onSubmit, _b = _a.theme, theme = _b === void 0 ? "light" : _b, _c = _a.customStyles, customStyles = _c === void 0 ? {} : _c, _d = _a.enableDebounce, enableDebounce = _d === void 0 ? true : _d, _e = _a.debounceDelay, debounceDelay = _e === void 0 ? 300 : _e;
     var _f = React.useState({}), formValues = _f[0], setFormValues = _f[1];
     var _g = React.useState({}), errors = _g[0], setErrors = _g[1];
     var _h = React.useState({}), touched = _h[0], setTouched = _h[1];
-    // Get visible errors (only for touched fields)
-    React.useCallback(function () {
+    var getVisibleErrors = React.useCallback(function () {
         var visibleErrors = {};
         Object.keys(errors).forEach(function (fieldName) {
             if (touched[fieldName] && errors[fieldName]) {
@@ -197,17 +214,14 @@ var FormValidator = function (_a) {
         var error = validateField(value, validationRules[name]);
         setErrors(function (prev) {
             var _a;
-            return (tslib.__assign(tslib.__assign({}, prev), (_a = {}, _a[name] = error || '', _a)));
+            return (tslib.__assign(tslib.__assign({}, prev), (_a = {}, _a[name] = error || "", _a)));
         });
     }, debounceDelay);
     var handleChange = React.useCallback(function (e) {
         var _a = e.target, name = _a.name, value = _a.value, type = _a.type, checked = _a.checked;
         var fieldValue = value;
-        if (type === 'checkbox') {
-            fieldValue = checked ? value : '';
-        }
-        else if (type === 'radio') {
-            fieldValue = value;
+        if (type === "checkbox") {
+            fieldValue = checked; // single checkbox only
         }
         setFormValues(function (prev) {
             var _a;
@@ -220,19 +234,15 @@ var FormValidator = function (_a) {
             var error_1 = validateField(fieldValue, validationRules[name]);
             setErrors(function (prev) {
                 var _a;
-                return (tslib.__assign(tslib.__assign({}, prev), (_a = {}, _a[name] = error_1 || '', _a)));
+                return (tslib.__assign(tslib.__assign({}, prev), (_a = {}, _a[name] = error_1 || "", _a)));
             });
         }
     }, [enableDebounce, debouncedValidate, validationRules]);
     var handleBlur = React.useCallback(function (e) {
         var _a = e.target, name = _a.name, value = _a.value, type = _a.type, checked = _a.checked;
         var fieldValue = value;
-        if (type === 'checkbox') {
-            fieldValue = checked ? value : '';
-        }
-        else if (type === 'radio') {
-            fieldValue = value;
-        }
+        if (type === "checkbox")
+            fieldValue = checked;
         setTouched(function (prev) {
             var _a;
             return (tslib.__assign(tslib.__assign({}, prev), (_a = {}, _a[name] = true, _a)));
@@ -240,103 +250,79 @@ var FormValidator = function (_a) {
         var error = validateField(fieldValue, validationRules[name]);
         setErrors(function (prev) {
             var _a;
-            return (tslib.__assign(tslib.__assign({}, prev), (_a = {}, _a[name] = error || '', _a)));
+            return (tslib.__assign(tslib.__assign({}, prev), (_a = {}, _a[name] = error || "", _a)));
         });
     }, [validationRules]);
-    // Special handler for CheckboxGroup
-    var handleGroupChange = React.useCallback(function (name, values) {
-        setFormValues(function (prev) {
-            var _a;
-            return (tslib.__assign(tslib.__assign({}, prev), (_a = {}, _a[name] = values, _a)));
-        });
-        var error = validateField(values, validationRules[name]);
-        setErrors(function (prev) {
-            var _a;
-            return (tslib.__assign(tslib.__assign({}, prev), (_a = {}, _a[name] = error || '', _a)));
-        });
-    }, [validationRules]);
-    var handleGroupBlur = React.useCallback(function (name) {
-        setTouched(function (prev) {
-            var _a;
-            return (tslib.__assign(tslib.__assign({}, prev), (_a = {}, _a[name] = true, _a)));
-        });
-        var error = validateField(formValues[name], validationRules[name]);
-        setErrors(function (prev) {
-            var _a;
-            return (tslib.__assign(tslib.__assign({}, prev), (_a = {}, _a[name] = error || '', _a)));
-        });
-    }, [formValues, validationRules]);
     var handleSubmit = React.useCallback(function (e) {
         e.preventDefault();
         var formErrors = validateForm(formValues, validationRules);
         setErrors(formErrors);
         var allTouched = {};
-        Object.keys(validationRules).forEach(function (fieldName) {
-            allTouched[fieldName] = true;
-        });
+        Object.keys(validationRules).forEach(function (fieldName) { return (allTouched[fieldName] = true); });
         setTouched(allTouched);
         if (Object.keys(formErrors).length === 0) {
             onSubmit(formValues);
         }
     }, [formValues, validationRules, onSubmit]);
-    // Process children and inject props
     var childrenWithProps = React.Children.map(children, function (child) {
-        if (React.isValidElement(child)) {
-            var element = child;
-            var childName = element.props.name;
-            if (childName) {
-                // Check if this is a CheckboxGroup by looking at the component type
-                var isCheckboxGroup = element.props && element.props.options !== undefined;
-                if (isCheckboxGroup) {
-                    // For CheckboxGroup, pass group handlers
-                    return React.cloneElement(element, {
-                        values: formValues[childName] || [],
-                        onChange: handleGroupChange,
-                        onBlur: handleGroupBlur,
-                        error: errors[childName],
-                        touched: touched[childName],
-                        'data-touched': touched[childName] || false,
-                        'data-error': !!errors[childName]
+        var _a;
+        if (!React.isValidElement(child))
+            return child;
+        var element = child;
+        if (!element.props.name)
+            return child;
+        var fieldName = element.props.name;
+        var hasError = !!errors[fieldName];
+        var isTouched = touched[fieldName];
+        var isSuccess = isTouched && !hasError;
+        // ⭐ SPECIAL CASE → CheckboxGroup
+        if (element.type === CheckboxGroup) {
+            return React.cloneElement(element, {
+                values: formValues[fieldName] || [],
+                onChange: function (name, vals) {
+                    setFormValues(function (prev) {
+                        var _a;
+                        return (tslib.__assign(tslib.__assign({}, prev), (_a = {}, _a[name] = vals, _a)));
                     });
-                }
-                else {
-                    // For regular inputs
-                    var hasError = !!errors[childName];
-                    var isTouched = touched[childName];
-                    var isSuccess = isTouched && !hasError;
-                    var className = 'form-validator-field';
-                    if (hasError)
-                        className += ' error';
-                    if (isSuccess)
-                        className += ' form-validator-success';
-                    if (element.props.className)
-                        className += " ".concat(element.props.className);
-                    return React.cloneElement(element, {
-                        onChange: handleChange,
-                        onBlur: handleBlur,
-                        value: formValues[childName] || '',
-                        className: className,
-                        style: customStyles[childName],
-                        'data-theme': theme,
-                        'data-touched': isTouched,
-                        'data-error': hasError
+                    var error = validateField(vals, validationRules[name]);
+                    setErrors(function (prev) {
+                        var _a;
+                        return (tslib.__assign(tslib.__assign({}, prev), (_a = {}, _a[name] = error || "", _a)));
                     });
-                }
-            }
+                },
+                onBlur: function (name) {
+                    return setTouched(function (prev) {
+                        var _a;
+                        return (tslib.__assign(tslib.__assign({}, prev), (_a = {}, _a[name] = true, _a)));
+                    });
+                },
+                error: errors[fieldName],
+                touched: touched[fieldName],
+            });
         }
-        return child;
+        var className = styles["form-validator-field"];
+        if (hasError)
+            className += " ".concat(styles.error);
+        if (isSuccess)
+            className += " ".concat(styles["form-validator-success"]);
+        if (element.props.className)
+            className += " ".concat(element.props.className);
+        return React.cloneElement(child, {
+            onChange: handleChange,
+            onBlur: handleBlur,
+            value: (_a = formValues[fieldName]) !== null && _a !== void 0 ? _a : "",
+            checked: typeof formValues[fieldName] === "boolean"
+                ? formValues[fieldName]
+                : undefined,
+            className: className,
+            style: customStyles[fieldName],
+            "data-theme": theme,
+        });
     });
-    // Only show error messages for touched fields, and place them near the field
-    var errorElements = Object.keys(touched).map(function (fieldName) {
-        if (touched[fieldName] && errors[fieldName]) {
-            return (React.createElement("div", { key: fieldName, className: styles['form-validator-error-message'], "data-field": fieldName }, errors[fieldName]));
-        }
-        return null;
-    }).filter(Boolean);
+    var visibleErrors = getVisibleErrors();
     return (React.createElement("form", { onSubmit: handleSubmit, className: "form-validator-theme-".concat(theme), style: customStyles.form, noValidate: true },
         childrenWithProps,
-        errorElements.length > 0 && (React.createElement("div", { className: styles['error-summary'] }, errorElements)),
-        React.createElement("button", { type: "submit", style: { display: 'none' } }, "Submit")));
+        Object.keys(visibleErrors).length > 0 && (React.createElement("div", { className: styles["error-summary"] }, Object.values(visibleErrors).map(function (err, i) { return (React.createElement("div", { key: i, className: styles["form-validator-error-message"] }, err)); })))));
 };
 
 var FormField = function (_a) {
@@ -347,38 +333,6 @@ var FormField = function (_a) {
         React.createElement("input", tslib.__assign({ id: fieldId, className: "form-validator-input ".concat(errors ? 'errors' : '', " ").concat(touched && !errors ? 'success' : '', " ").concat(className), "aria-invalid": !!errors, "aria-describedby": errors ? "".concat(fieldId, "-errors") : undefined }, props)),
         errors && (React.createElement("div", { id: "".concat(fieldId, "-errors"), className: "form-validator-errors-message", role: "alert" }, errors))));
 };
-
-var CheckboxGroup = function (_a) {
-    var name = _a.name, options = _a.options, _b = _a.values, values = _b === void 0 ? [] : _b, onChange = _a.onChange, onBlur = _a.onBlur, _c = _a.className, className = _c === void 0 ? '' : _c, error = _a.error, touched = _a.touched;
-    // Sync with form values when they change from outside
-    React.useEffect(function () {
-    }, [values]);
-    var handleChange = function (e) {
-        var _a = e.target, value = _a.value, checked = _a.checked;
-        var newValues;
-        if (checked) {
-            newValues = tslib.__spreadArray(tslib.__spreadArray([], values, true), [value], false);
-        }
-        else {
-            newValues = values.filter(function (v) { return v !== value; });
-        }
-        onChange === null || onChange === void 0 ? void 0 : onChange(name, newValues);
-    };
-    // Notify form of blur when any checkbox loses focus
-    var handleBlur = function () {
-        // Small timeout to ensure change happens before blur
-        setTimeout(function () {
-            onBlur === null || onBlur === void 0 ? void 0 : onBlur(name);
-        }, 10);
-    };
-    return (React.createElement("div", { className: "".concat(styles['checkbox-group'], " ").concat(className), "data-touched": touched, "data-error": error },
-        options.map(function (option) { return (React.createElement("label", { key: option.value, className: styles['checkbox-label'] },
-            React.createElement("input", { type: "checkbox", name: name, value: option.value, checked: values.includes(option.value), onChange: handleChange, onBlur: handleBlur, className: "".concat(styles['checkbox-input'], " ").concat(error && touched ? styles['error'] : '') }),
-            option.label)); }),
-        error && touched && (React.createElement("div", { className: styles['form-validator-error-message'] }, error))));
-};
-// Add display name for better debugging and component detection
-CheckboxGroup.displayName = 'CheckboxGroup';
 
 if (!Array.prototype.some) {
     Array.prototype.some = function (callback, thisArg) {

@@ -122,8 +122,7 @@
 
 .checkbox-input:focus {
   outline: none;
-  ring: 2px solid #3b82f6;
-  ring-offset: 2px;
+  box-shadow: 0 0 0 2px #3b82f6;
 }
 
 .error-summary {
