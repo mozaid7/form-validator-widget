@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/animations.module.css';
 
 interface CheckboxOption {
   value: string;
@@ -40,9 +41,9 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
   };
 
   return (
-    <div className={`checkbox-group ${className}`}>
+    <div className={`${styles['checkbox-group']} ${className}`}>
       {options.map(option => (
-        <label key={option.value} className="checkbox-label">
+        <label key={option.value} className={styles['checkbox-label']}>
           <input
             type="checkbox"
             name={name}
@@ -50,13 +51,15 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
             checked={values.includes(option.value)}
             onChange={handleChange}
             onBlur={() => onBlur?.(name)}
-            className={`checkbox-input ${error && touched ? 'error' : ''}`}
+            className={`${styles['checkbox-input']} ${error && touched ? styles['error'] : ''}`}
+            data-touched={touched}
+            data-error={error}
           />
           {option.label}
         </label>
       ))}
       {error && touched && (
-        <div className="error-message">{error}</div>
+        <div className={styles['form-validator-error-message']}>{error}</div>
       )}
     </div>
   );
