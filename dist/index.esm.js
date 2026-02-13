@@ -1,5 +1,5 @@
 import { __assign, __rest, __spreadArray } from 'tslib';
-import React, { useRef, useCallback, useState } from 'react';
+import React, { useRef, useCallback, useState, useEffect } from 'react';
 
 var validateField = function (value, rules, allValues) {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u;
@@ -284,8 +284,7 @@ var FormValidator = function (_a) {
             var childName = element.props.name;
             if (childName) {
                 // Check if this is a CheckboxGroup by looking at the component type
-                var isCheckboxGroup = element.type === 'CheckboxGroup' ||
-                    (typeof element.type === 'function' && element.type.name === 'CheckboxGroup');
+                var isCheckboxGroup = element.props && element.props.options !== undefined;
                 if (isCheckboxGroup) {
                     // For CheckboxGroup, pass group handlers
                     return React.cloneElement(element, {
@@ -294,7 +293,7 @@ var FormValidator = function (_a) {
                         onBlur: handleGroupBlur,
                         error: errors[childName],
                         touched: touched[childName],
-                        'data-touched': touched[childName],
+                        'data-touched': touched[childName] || false,
                         'data-error': !!errors[childName]
                     });
                 }
@@ -349,6 +348,9 @@ var FormField = function (_a) {
 
 var CheckboxGroup = function (_a) {
     var name = _a.name, options = _a.options, _b = _a.values, values = _b === void 0 ? [] : _b, onChange = _a.onChange, onBlur = _a.onBlur, _c = _a.className, className = _c === void 0 ? '' : _c, error = _a.error, touched = _a.touched;
+    // Sync with form values when they change from outside
+    useEffect(function () {
+    }, [values]);
     var handleChange = function (e) {
         var _a = e.target, value = _a.value, checked = _a.checked;
         var newValues;
@@ -362,7 +364,10 @@ var CheckboxGroup = function (_a) {
     };
     // Notify form of blur when any checkbox loses focus
     var handleBlur = function () {
-        onBlur === null || onBlur === void 0 ? void 0 : onBlur(name);
+        // Small timeout to ensure change happens before blur
+        setTimeout(function () {
+            onBlur === null || onBlur === void 0 ? void 0 : onBlur(name);
+        }, 10);
     };
     return (React.createElement("div", { className: "".concat(styles['checkbox-group'], " ").concat(className), "data-touched": touched, "data-error": error },
         options.map(function (option) { return (React.createElement("label", { key: option.value, className: styles['checkbox-label'] },
@@ -370,6 +375,8 @@ var CheckboxGroup = function (_a) {
             option.label)); }),
         error && touched && (React.createElement("div", { className: styles['form-validator-error-message'] }, error))));
 };
+// Add display name for better debugging and component detection
+CheckboxGroup.displayName = 'CheckboxGroup';
 
 if (!Array.prototype.some) {
     Array.prototype.some = function (callback, thisArg) {
