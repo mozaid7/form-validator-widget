@@ -181,7 +181,8 @@ var FormValidator = function (_a) {
     var _f = useState({}), formValues = _f[0], setFormValues = _f[1];
     var _g = useState({}), errors = _g[0], setErrors = _g[1];
     var _h = useState({}), touched = _h[0], setTouched = _h[1];
-    var getVisibleErrors = useCallback(function () {
+    // Get visible errors (only for touched fields)
+    useCallback(function () {
         var visibleErrors = {};
         Object.keys(errors).forEach(function (fieldName) {
             if (touched[fieldName] && errors[fieldName]) {
@@ -240,6 +241,29 @@ var FormValidator = function (_a) {
             return (__assign(__assign({}, prev), (_a = {}, _a[name] = error || '', _a)));
         });
     }, [validationRules]);
+    // Special handler for CheckboxGroup
+    var handleGroupChange = useCallback(function (name, values) {
+        setFormValues(function (prev) {
+            var _a;
+            return (__assign(__assign({}, prev), (_a = {}, _a[name] = values, _a)));
+        });
+        var error = validateField(values, validationRules[name]);
+        setErrors(function (prev) {
+            var _a;
+            return (__assign(__assign({}, prev), (_a = {}, _a[name] = error || '', _a)));
+        });
+    }, [validationRules]);
+    var handleGroupBlur = useCallback(function (name) {
+        setTouched(function (prev) {
+            var _a;
+            return (__assign(__assign({}, prev), (_a = {}, _a[name] = true, _a)));
+        });
+        var error = validateField(formValues[name], validationRules[name]);
+        setErrors(function (prev) {
+            var _a;
+            return (__assign(__assign({}, prev), (_a = {}, _a[name] = error || '', _a)));
+        });
+    }, [formValues, validationRules]);
     var handleSubmit = useCallback(function (e) {
         e.preventDefault();
         var formErrors = validateForm(formValues, validationRules);
@@ -253,41 +277,64 @@ var FormValidator = function (_a) {
             onSubmit(formValues);
         }
     }, [formValues, validationRules, onSubmit]);
+    // Process children and inject props
     var childrenWithProps = React.Children.map(children, function (child) {
         if (React.isValidElement(child)) {
             var element = child;
-            if (element.props.name) {
-                var fieldName = element.props.name;
-                var hasError = !!errors[fieldName];
-                var isTouched = touched[fieldName];
-                var isSuccess = isTouched && !hasError;
-                var className = 'form-validator-field';
-                if (hasError)
-                    className += ' error';
-                if (isSuccess)
-                    className += ' form-validator-success';
-                if (element.props.className)
-                    className += " ".concat(element.props.className);
-                var props = {
-                    onChange: handleChange,
-                    onBlur: handleBlur,
-                    value: formValues[fieldName] || '',
-                    className: className,
-                    style: customStyles[fieldName],
-                    'data-theme': theme,
-                    'data-touched': isTouched,
-                    'data-error': hasError
-                };
-                return React.cloneElement(child, props);
+            var childName = element.props.name;
+            if (childName) {
+                // Check if this is a CheckboxGroup by looking at the component type
+                var isCheckboxGroup = element.type === 'CheckboxGroup' ||
+                    (typeof element.type === 'function' && element.type.name === 'CheckboxGroup');
+                if (isCheckboxGroup) {
+                    // For CheckboxGroup, pass group handlers
+                    return React.cloneElement(element, {
+                        values: formValues[childName] || [],
+                        onChange: handleGroupChange,
+                        onBlur: handleGroupBlur,
+                        error: errors[childName],
+                        touched: touched[childName],
+                        'data-touched': touched[childName],
+                        'data-error': !!errors[childName]
+                    });
+                }
+                else {
+                    // For regular inputs
+                    var hasError = !!errors[childName];
+                    var isTouched = touched[childName];
+                    var isSuccess = isTouched && !hasError;
+                    var className = 'form-validator-field';
+                    if (hasError)
+                        className += ' error';
+                    if (isSuccess)
+                        className += ' form-validator-success';
+                    if (element.props.className)
+                        className += " ".concat(element.props.className);
+                    return React.cloneElement(element, {
+                        onChange: handleChange,
+                        onBlur: handleBlur,
+                        value: formValues[childName] || '',
+                        className: className,
+                        style: customStyles[childName],
+                        'data-theme': theme,
+                        'data-touched': isTouched,
+                        'data-error': hasError
+                    });
+                }
             }
         }
         return child;
     });
-    var visibleErrors = getVisibleErrors();
-    var errorElements = Object.keys(visibleErrors).length > 0 && (React.createElement("div", { className: styles['error-summary'] }, Object.keys(visibleErrors).map(function (fieldName) { return (React.createElement("div", { key: fieldName, className: styles['form-validator-error-message'], "data-field": fieldName }, visibleErrors[fieldName])); })));
+    // Only show error messages for touched fields, and place them near the field
+    var errorElements = Object.keys(touched).map(function (fieldName) {
+        if (touched[fieldName] && errors[fieldName]) {
+            return (React.createElement("div", { key: fieldName, className: styles['form-validator-error-message'], "data-field": fieldName }, errors[fieldName]));
+        }
+        return null;
+    }).filter(Boolean);
     return (React.createElement("form", { onSubmit: handleSubmit, className: "form-validator-theme-".concat(theme), style: customStyles.form, noValidate: true },
         childrenWithProps,
-        errorElements,
+        errorElements.length > 0 && (React.createElement("div", { className: styles['error-summary'] }, errorElements)),
         React.createElement("button", { type: "submit", style: { display: 'none' } }, "Submit")));
 };
 
@@ -313,9 +360,13 @@ var CheckboxGroup = function (_a) {
         }
         onChange === null || onChange === void 0 ? void 0 : onChange(name, newValues);
     };
-    return (React.createElement("div", { className: "".concat(styles['checkbox-group'], " ").concat(className) },
+    // Notify form of blur when any checkbox loses focus
+    var handleBlur = function () {
+        onBlur === null || onBlur === void 0 ? void 0 : onBlur(name);
+    };
+    return (React.createElement("div", { className: "".concat(styles['checkbox-group'], " ").concat(className), "data-touched": touched, "data-error": error },
         options.map(function (option) { return (React.createElement("label", { key: option.value, className: styles['checkbox-label'] },
-            React.createElement("input", { type: "checkbox", name: name, value: option.value, checked: values.includes(option.value), onChange: handleChange, onBlur: function () { return onBlur === null || onBlur === void 0 ? void 0 : onBlur(name); }, className: "".concat(styles['checkbox-input'], " ").concat(error && touched ? styles['error'] : ''), "data-touched": touched, "data-error": error }),
+            React.createElement("input", { type: "checkbox", name: name, value: option.value, checked: values.includes(option.value), onChange: handleChange, onBlur: handleBlur, className: "".concat(styles['checkbox-input'], " ").concat(error && touched ? styles['error'] : '') }),
             option.label)); }),
         error && touched && (React.createElement("div", { className: styles['form-validator-error-message'] }, error))));
 };
