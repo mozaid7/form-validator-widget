@@ -17,7 +17,6 @@ export const FormValidator: React.FC<FormValidatorProps> = ({
     const [errors, setErrors] = useState<ErrorState>({});
     const [touched, setTouched] = useState<Record<string, boolean>>({});
 
-    // Only show errors for touched fields
     const getVisibleErrors = useCallback(() => {
         const visibleErrors: ErrorState = {};
         Object.keys(errors).forEach(fieldName => {
@@ -36,7 +35,6 @@ export const FormValidator: React.FC<FormValidatorProps> = ({
     const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target;
         
-        // Handle different input types
         let fieldValue = value;
         if (type === 'checkbox') {
             fieldValue = checked ? value : '';
@@ -64,7 +62,6 @@ export const FormValidator: React.FC<FormValidatorProps> = ({
             fieldValue = value;
         }
         
-        // Mark field as touched
         setTouched(prev => ({ ...prev, [name]: true }));
 
         const error = validateField(fieldValue, validationRules[name]);
@@ -77,7 +74,6 @@ export const FormValidator: React.FC<FormValidatorProps> = ({
         const formErrors = validateForm(formValues, validationRules);
         setErrors(formErrors);
         
-        // Mark ALL fields as touched on submit
         const allTouched: Record<string, boolean> = {};
         Object.keys(validationRules).forEach(fieldName => {
             allTouched[fieldName] = true;
@@ -99,13 +95,11 @@ export const FormValidator: React.FC<FormValidatorProps> = ({
                 const isTouched = touched[fieldName];
                 const isSuccess = isTouched && !hasError;
                 
-                // Generate className
                 let className = 'form-validator-field';
                 if (hasError) className += ' error';
                 if (isSuccess) className += ' form-validator-success';
                 if (element.props.className) className += ` ${element.props.className}`;
 
-                // Pass all props to the child
                 const props: any = {
                     onChange: handleChange,
                     onBlur: handleBlur,
@@ -124,15 +118,19 @@ export const FormValidator: React.FC<FormValidatorProps> = ({
     });
 
     const visibleErrors = getVisibleErrors();
-    const errorElements = Object.keys(visibleErrors).map(fieldName => (
+    const errorElements = Object.keys(visibleErrors).length > 0 && (
+    <div className={styles['error-summary']}>
+        {Object.keys(visibleErrors).map(fieldName => (
         <div 
             key={fieldName} 
-            className="form-validator-error-message"
+            className={styles['form-validator-error-message']}
             data-field={fieldName}
         >
             {visibleErrors[fieldName]}
         </div>
-    ));
+        ))}
+    </div>
+    );
 
     return (
         <form 
@@ -143,7 +141,6 @@ export const FormValidator: React.FC<FormValidatorProps> = ({
         >
             {childrenWithProps}
             {errorElements}
-            {/* Hidden submit button - user should provide their own */}
             <button type="submit" style={{ display: 'none' }}>Submit</button>
         </form>
     );
